@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+  (function(){
+    const AUTH_KEY = "bp_vault_auth";
+    const AUTH_TS  = "bp_vault_auth_ts";
+    const EXPIRE_DAYS = 14;
+
+    function isAuthed() {
+      const ok = localStorage.getItem(AUTH_KEY) === "1";
+      if (!ok) return false;
+
+      const ts = parseInt(localStorage.getItem(AUTH_TS) || "0", 10);
+      if (!ts) return false;
+
+      const maxAgeMs = EXPIRE_DAYS * 24 * 60 * 60 * 1000;
+      return (Date.now() - ts) < maxAgeMs;
+    }
+
+    if (!isAuthed()) {
+      window.location.replace("/login.html");
+    }
+  })();
+</script>
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
