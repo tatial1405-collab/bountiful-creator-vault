@@ -33,6 +33,9 @@
     --taupe-light:  #BEB3A0;
     --white:        #FDFAF3;
   }
+	body.auth-loading {
+  visibility: hidden;
+}
 
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
@@ -720,7 +723,7 @@
   }
 </style>
 </head>
-<body>
+<body class="auth-loading">
 
 <!-- HEADER -->
 <header class="site-header">
