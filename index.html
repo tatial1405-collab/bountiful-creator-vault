@@ -2792,17 +2792,28 @@ function insertTemplate(type) {
 
 <script>
 window.addEventListener("load", function () {
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.init();
+  if (!window.netlifyIdentity) return;
 
-    window.netlifyIdentity.on("init", function (user) {
-      if (!user) {
-        window.netlifyIdentity.open();
-      }
-    });
-  }
+  window.netlifyIdentity.on("init", function(user) {
+    if (user) {
+      document.body.classList.remove("auth-loading");
+    } else {
+      window.netlifyIdentity.open("login");
+    }
+  });
+
+  window.netlifyIdentity.on("login", function() {
+    document.body.classList.remove("auth-loading");
+    window.netlifyIdentity.close();
+  });
+
+  window.netlifyIdentity.on("logout", function() {
+    document.body.classList.add("auth-loading");
+    window.netlifyIdentity.open("login");
+  });
+
+  window.netlifyIdentity.init();
 });
 </script>
-
 </body>
 </html>
