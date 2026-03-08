@@ -2788,15 +2788,17 @@ function insertTemplate(type) {
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <script>
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.init();
+window.addEventListener("load", function () {
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.init();
 
-  netlifyIdentity.on("init", user => {
-    if (!user) {
-      netlifyIdentity.open();
-    }
-  });
-}
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.open();
+      }
+    });
+  }
+});
 </script>
 
 </body>
