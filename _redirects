@@ -1,0 +1,2 @@
+/vault/*   /vault/:splat   200!   Role=member
+/vault/*   /               401
