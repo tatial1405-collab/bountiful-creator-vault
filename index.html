@@ -34,10 +34,6 @@
     --white:        #FDFAF3;
   }
 
-#vault-content {
-  display: none;
-}
-
 .login-area {
   display: flex;
   align-items: center;
@@ -757,8 +753,6 @@
 </style>
 </head>
 <body>
-
-<div id="vault-content">
 
 <!-- HEADER -->
 <header class="site-header">
@@ -2828,37 +2822,7 @@ function insertTemplate(type) {
   })();
 </script>
 
-</div>
-
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-<script>
-window.addEventListener("load", function () {
-
-  if (!window.netlifyIdentity) return;
-
-  const vault = document.getElementById("vault-content");
-
-  window.netlifyIdentity.on("init", function(user) {
-    if (user) {
-      vault.style.display = "block";
-    } else {
-      window.netlifyIdentity.open("login");
-    }
-  });
-
-  window.netlifyIdentity.on("login", function() {
-    vault.style.display = "block";
-    window.netlifyIdentity.close();
-  });
-
-  window.netlifyIdentity.on("logout", function() {
-    vault.style.display = "none";
-    window.netlifyIdentity.open("login");
-  });
-
-  window.netlifyIdentity.init();
-});
-</script>
 </body>
 </html>
