@@ -1,2 +1,0 @@
-/vault/*  /vault/:splat  200!  Role=member
-/vault/*  /index.html    401!
