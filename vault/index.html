@@ -2843,16 +2843,7 @@ function insertTemplate(type) {
     }
 
     netlifyIdentity.on('init', function(user) {
-      if (user) {
-        checkAccess(user);
-      } else {
-        // No session yet — show login modal
-        clearTimeout(fallbackTimer);
-        netlifyIdentity.open('login');
-        netlifyIdentity.on('login', function(user) {
-          checkAccess(user);
-        });
-      }
+      checkAccess(user);
     });
   })();
 </script>
