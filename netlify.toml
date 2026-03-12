@@ -1,10 +1,2 @@
-[[redirects]]
-  from = "/vault/*"
-  to = "/:splat"
-  status = 200
-  conditions = {Role = ["member"]}
-
-[[redirects]]
-  from = "/vault/*"
-  to = "/"
-  status = 302
+[build]
+  publish = "."
