@@ -766,6 +766,10 @@
       <span>Premium Prompts</span>
     </div>
 
+<div class="login-area">
+  <div data-netlify-identity-button></div>
+</div>
+
   </div>
 </header>
 
@@ -2819,11 +2823,17 @@ function insertTemplate(type) {
 </script>
 <script>
   (function() {
+    // Fallback: if identity doesn't respond in 5 seconds, redirect to home
+    var fallbackTimer = setTimeout(function() {
+      window.location.replace('/');
+    }, 5000);
+
     var script = document.createElement('script');
     script.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
     document.head.appendChild(script);
     script.onload = function() {
       netlifyIdentity.on('init', function(user) {
+        clearTimeout(fallbackTimer);
         if (!user) {
           window.location.replace('/');
         } else {
@@ -2835,6 +2845,10 @@ function insertTemplate(type) {
           }
         }
       });
+    };
+    script.onerror = function() {
+      clearTimeout(fallbackTimer);
+      window.location.replace('/');
     };
   })();
 </script>
