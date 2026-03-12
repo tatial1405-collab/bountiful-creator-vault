@@ -750,20 +750,10 @@
     color: var(--taupe-light);
     white-space: pre-line;
   }
+  body { visibility: hidden; }
 </style>
 </head>
 <body>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function(user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function() {
-          document.location.href = "/vault/";
-        });
-      }
-    });
-  }
-</script>
 <!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
@@ -775,10 +765,6 @@
       <strong id="total-counter">1,680</strong>
       <span>Premium Prompts</span>
     </div>
-
-<div class="login-area">
-  <div data-netlify-identity-button></div>
-</div>
 
   </div>
 </header>
@@ -2844,6 +2830,8 @@ function insertTemplate(type) {
           var roles = (user.app_metadata && user.app_metadata.roles) || [];
           if (roles.indexOf('member') === -1) {
             window.location.replace('/');
+          } else {
+            document.body.style.visibility = 'visible';
           }
         }
       });
